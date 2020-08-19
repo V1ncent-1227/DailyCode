@@ -1,6 +1,12 @@
 ## 功能
 
-使用python selenium爬取同花顺i问财选股结果。查询条件为：cci小于-100和j小于0和k小于30和d小于30和macd小于0不包含st
+使用python selenium爬取同花顺i问财选股结果。
+
+A股查询条件：cci小于-100和j小于0和k小于30和d小于30和macd小于0不包含st
+
+港股查询条件：cci小于-100和j小于0和k小于30和d小于30和macd小于0
+
+美股查询条件：中概股cci小于-100和j小于0和k小于30和d小于30和macd小于0
 
 ## crontab
 
