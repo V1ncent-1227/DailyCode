@@ -5,6 +5,7 @@ import requests
 import json
 import datetime
 import pickle
+import time
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Linux; Android 7.1.1; E6883 Build/32.4.A.1.54; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.99 Mobile Safari/537.36',   
@@ -25,6 +26,19 @@ logindata={
 # 5 您个人计算机的型号
 # 6 您最喜欢的餐馆名称
 # 7 驾驶执照的最后四位数字
+
+my_page = "https://www.t00ls.net/space-uid-8169.html" # 登录后访问该页面以保持在线
+TIME_SEC = 601 # 10分钟刷新一次
+
+def keep_online(session):
+    for i in range(100):
+        try:
+            session.get(url=my_page, headers=headers)
+            time.sleep(TIME_SEC)
+            print '[*] 第 %d 次刷新' % (i, )
+        except Exception as e:
+            print 'Exception: ', e
+
 
 def login(session):
     loginurl="https://www.t00ls.net/login.json"
@@ -91,8 +105,12 @@ except:
     result,formhash=login(session)
 if result=="success":
     result=signin(session,formhash)
+    
 else:
     print("login_error")
     result="login_error"
+
 logwrite(result)
 webhook(result)
+
+keep_online(session)
