@@ -10,7 +10,7 @@ date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 
 def webhook(result):
     webhookurl = "http://sc.ftqq.com/"
-    sckey = "SCU107316Tdd0895f6697ccdad9e75ddc382cf35005f1e4ed7c5876" #替换成自己的sckey
+    sckey = "" #替换成自己的sckey
     requests.get(url=webhookurl + sckey + ".send?text="+now+"&desp=" + result)
 
 def logwrite(text):
